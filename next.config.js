@@ -1,7 +1,6 @@
 const path = require('path')
 
 module.exports = {
-  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
   trailingSlash: true,
   reactStrictMode: false,
   experimental: {

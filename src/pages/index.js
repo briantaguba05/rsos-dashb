@@ -1,41 +1,8 @@
-/*import React, { useState } from 'react'
-import Sidebar from '../pages/sidebar'
-import Navbar from '../pages/Navbar'
-import MainSection from '../pages/landing/MainSection'
-import InfoSection from '../pages/landing/InfoSection'
-import { homeObjOne, homeObjTwo, homeObjThree, homeObjFour } from '../pages/landing/InfoSection/Data'
-import Tutorials from '../pages/Tutorials'
-import Footer from '../pages/Footer'
-
-const Home = () => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const toggle = () => {
-    setIsOpen(!isOpen)
-  }
-
-  return (
-    <>
-      <Sidebar isOpen={isOpen} toggle={toggle} />
-      <Navbar toggle={toggle} />
-      <MainSection />
-      <InfoSection {...homeObjOne} />
-      <InfoSection {...homeObjTwo} />
-      <InfoSection {...homeObjThree} />
-      <Tutorials />
-      <InfoSection {...homeObjFour} />
-      <Footer />
-    </>
-  )
-}
-
-export default Home*/
-
 // ** React Imports
 import { useState, useEffect } from 'react'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword } from "firebase/auth";
 
-const axios = require('axios').default
+const axios = require('axios').default;
 
 // ** Next Imports
 import Link from 'next/link'
@@ -68,7 +35,7 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 // ** Demo Imports
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
 
-import { firebaseAuth } from 'src/configs/firebase'
+import { firebaseAuth } from 'src/configs/firebase';
 
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -102,10 +69,11 @@ const LoginPage = () => {
     if (firebaseAuth.currentUser) {
       router.push('/home')
     }
-  })
+  });
 
   // ** Hook
   const theme = useTheme()
+
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value })
@@ -116,6 +84,7 @@ const LoginPage = () => {
   }
 
   async function handleLogin() {
+
     try {
       const response = await signInWithEmailAndPassword(firebaseAuth, values.email, values.password)
 
@@ -135,51 +104,43 @@ const LoginPage = () => {
     <Box className='content-center'>
       <Head>
         <title>{`${themeConfig.templateName} - Login`}</title>
-        <meta name='description' content={`${themeConfig.templateName} - Login`} />
+        <meta
+          name='description'
+          content={`${themeConfig.templateName} - Login`}
+        />
         <meta name='keywords' content='RSOS' />
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
 
       <Card sx={{ zIndex: 1 }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
+
           <Box sx={{ mb: 6 }}>
             <Typography variant='h5' sx={{ fontWeight: 600, marginBottom: 1.5 }}>
               Welcome to {themeConfig.templateName}
             </Typography>
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField
-              autoFocus
-              fullWidth
-              id='email'
-              type='email'
-              value={values.email}
-              onChange={handleChange('email')}
-              onKeyDown={e => {
+            <TextField autoFocus fullWidth id='email' type='email' value={values.email} onChange={handleChange('email')}
+              onKeyDown={(e) => {
                 if (e.key === 'Enter') {
-                  handleLogin()
+                  handleLogin();
                 }
-              }}
-              label='Email'
-              sx={{ marginBottom: 4 }}
-            />
-            <TextField
-              autoFocus
-              fullWidth
-              id='password'
-              type='password'
-              value={values.password}
-              onChange={handleChange('password')}
-              onKeyDown={e => {
+              }} label='Email' sx={{ marginBottom: 4 }} />
+            <TextField autoFocus fullWidth id='password' type='password' value={values.password} onChange={handleChange('password')}
+              onKeyDown={(e) => {
                 if (e.key === 'Enter') {
-                  handleLogin()
+                  handleLogin();
                 }
-              }}
-              label='Password'
-              sx={{ marginBottom: 4 }}
-            />
-            <Box sx={{ mb: 5 }} />
-            <Button fullWidth size='large' variant='contained' sx={{ marginBottom: 7 }} onClick={handleLogin}>
+              }} label='Password' sx={{ marginBottom: 4 }} />
+            <Box sx={{ mb: 5, }} />
+            <Button
+              fullWidth
+              size='large'
+              variant='contained'
+              sx={{ marginBottom: 7 }}
+              onClick={handleLogin}
+            >
               Login
             </Button>
           </form>
@@ -193,7 +154,7 @@ const LoginPage = () => {
           >
             Register
           </Button>
-          {values.error ? <Alert severity='error'>{values.error}</Alert> : ''}
+          {values.error ? <Alert severity="error">{values.error}</Alert> : ''}
         </CardContent>
       </Card>
       <FooterIllustrationsV1 />
