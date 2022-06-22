@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import NavbarTwice from "../Navbar";
-import ScrollToTop from "../ScrollToTop";
+import React, { useState } from 'react'
+import NavbarTwice from '../Navbar/index'
+import ScrollToTop from '../ScrollToTop'
 import {
   AboutContent,
   AboutContentSec,
@@ -16,15 +16,15 @@ import {
   AboutPSecLarge,
   AboutPSecMed,
   SectionTwo,
-  AboutMain,
-} from "./AboutElements";
+  AboutMain
+} from './AboutElements'
 
 const About = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   const toggle = () => {
-    setIsOpen(!isOpen);
-  };
+    setIsOpen(!isOpen)
+  }
 
   return (
     <>
@@ -34,16 +34,12 @@ const About = () => {
       <AboutMain>
         <AboutContent>
           <AboutH1>About The Team</AboutH1>
-          <AboutIMG src="/beneflogo2.png" alt="image"></AboutIMG>
-          <AboutIMG src="/beneflogo1.png" alt="image"></AboutIMG>
+          <AboutIMG src='/beneflogo2.png' alt='image'></AboutIMG>
+          <AboutIMG src='/beneflogo1.png' alt='image'></AboutIMG>
           <AboutPLarge>P.A.R.A.C.</AboutPLarge>
           <br></br>
-          <AboutP>
-            Stands for, (Police And Riders Alliance Club), formed in 2015
-          </AboutP>
-          <AboutP>
-            The group consists of members from various government agencies,{" "}
-          </AboutP>
+          <AboutP>Stands for, (Police And Riders Alliance Club), formed in 2015</AboutP>
+          <AboutP>The group consists of members from various government agencies, </AboutP>
           <AboutP>like military, police, fireman, and other people.</AboutP>
 
           <br></br>
@@ -54,7 +50,7 @@ const About = () => {
         <AboutContentSec>
           <AboutH1Sec>About The Developers</AboutH1Sec>
           <SectionOne>
-            <AboutIMGSec src="/NUSEAL.png" alt="image"></AboutIMGSec>
+            <AboutIMGSec src='/NUSEAL.png' alt='image'></AboutIMGSec>
             <AboutPSecLarge>National University Manila</AboutPSecLarge>
           </SectionOne>
           <AboutPSec>BSIT-MWA Students</AboutPSec>
@@ -78,7 +74,7 @@ const About = () => {
         </AboutContent>
       </AboutMain>
     </>
-  );
-};
+  )
+}
 
-export default About;
+export default About
