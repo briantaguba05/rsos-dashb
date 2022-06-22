@@ -10,11 +10,12 @@
   "scripts": {
     "dev": "next dev -p 3010",
     "build": "next build",
-    "start": "serve -s build",
+    "start": "next start -p $PORT",
     "export": "next export",
     "lint": "eslint --fix \"src/**/*.{js,jsx}\"",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@emotion/cache": "^11.6.0",
