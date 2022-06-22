@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "next dev -p 3010",
     "build": "next build",
-    "start": "serve -s build",
+    "start": "next start -p $3011",
     "export": "next export",
     "lint": "eslint --fix \"src/**/*.{js,jsx}\"",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
