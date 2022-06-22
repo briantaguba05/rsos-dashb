@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import NavbarTwice from '../Navbar/index'
+import NavbarTwice from '../navbar'
 import ScrollToTop from '../ScrollToTop'
 import {
   AboutContent,
