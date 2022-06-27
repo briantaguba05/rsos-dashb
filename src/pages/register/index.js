@@ -1,9 +1,9 @@
 // ** React Imports
 import { useState, useEffect } from 'react'
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { collection, addDoc, getDocs, Timestamp, query, where } from "firebase/firestore";
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { collection, addDoc, getDocs, Timestamp, query, where } from 'firebase/firestore'
 
-const axios = require('axios').default;
+const axios = require('axios').default
 
 // ** Next Imports
 import Link from 'next/link'
@@ -38,7 +38,7 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 // ** Demo Imports
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
 
-import { firebaseAuth, firestore } from 'src/configs/firebase';
+import { firebaseAuth, firestore } from 'src/configs/firebase'
 
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -78,11 +78,10 @@ const LoginPage = () => {
     if (firebaseAuth.currentUser) {
       router.push('/home')
     }
-  });
+  })
 
   // ** Hook
   const theme = useTheme()
-
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value })
@@ -104,29 +103,29 @@ const LoginPage = () => {
 
       if (response.user) {
         updateProfile(response.user, {
-          displayName: `${values.fullName}|${values.role}`,
+          displayName: `${values.fullName}|${values.role}`
         })
         if (values.role === 'rider') {
           console.log('added rider')
-          addDoc(collection(firestore, "users"), {
+          addDoc(collection(firestore, 'users'), {
             auth_uid: response.user.uid,
             full_name: values.fullName,
             email: values.email,
             mobile_number: values.phone,
             motorcycle_type: values.motorcycleType,
             plate_number: values.plateNumber,
-            role: values.role,
-          });
+            role: values.role
+          })
         } else {
           console.log('added family')
-          addDoc(collection(firestore, "users"), {
+          addDoc(collection(firestore, 'users'), {
             auth_uid: response.user.uid,
             full_name: values.fullName,
             email: values.email,
             mobile_number: values.phone,
             riderID: values.riderID,
-            role: values.role,
-          });
+            role: values.role
+          })
         }
 
         router.push('/home')
@@ -138,7 +137,6 @@ const LoginPage = () => {
         setValues({ ...values, error: null })
       }, 5000)
     }
-
   }
 
   async function handleLogin() {
@@ -149,95 +147,164 @@ const LoginPage = () => {
     <Box className='content-center'>
       <Head>
         <title>{`${themeConfig.templateName} - Register`}</title>
-        <meta
-          name='description'
-          content={`${themeConfig.templateName} - Register`}
-        />
+        <meta name='description' content={`${themeConfig.templateName} - Register`} />
         <meta name='keywords' content='RSOS' />
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
 
       <Card sx={{ zIndex: 1 }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
-
           <Box sx={{ mb: 6 }}>
             <Typography variant='h5' sx={{ fontWeight: 600, marginBottom: 1.5 }}>
               Welcome to {themeConfig.templateName}
             </Typography>
           </Box>
-          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()} >
-            <TextField autoFocus fullWidth id='fullName' type='text' value={values.fullName} onChange={handleChange('fullName')}
-              onKeyDown={(e) => {
+          <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
+            <TextField
+              autoFocus
+              fullWidth
+              id='fullName'
+              type='text'
+              value={values.fullName}
+              onChange={handleChange('fullName')}
+              onKeyDown={e => {
                 if (e.key === 'Enter') {
-                  handleRegister();
+                  handleRegister()
                 }
-              }} label='Full Name' sx={{ marginBottom: 4 }} />
-            <TextField autoFocus fullWidth id='email' type='email' value={values.email} onChange={handleChange('email')}
-              onKeyDown={(e) => {
+              }}
+              label='Full Name'
+              sx={{ marginBottom: 4 }}
+            />
+            <TextField
+              autoFocus
+              fullWidth
+              id='email'
+              type='email'
+              value={values.email}
+              onChange={handleChange('email')}
+              onKeyDown={e => {
                 if (e.key === 'Enter') {
-                  handleRegister();
+                  handleRegister()
                 }
-              }} label='Email' sx={{ marginBottom: 4 }} />
-            <TextField autoFocus fullWidth id='phone' type='tel' value={values.phone} onChange={handleChange('phone')}
-              onKeyDown={(e) => {
+              }}
+              label='Email'
+              sx={{ marginBottom: 4 }}
+            />
+            <TextField
+              autoFocus
+              fullWidth
+              id='phone'
+              type='tel'
+              value={values.phone}
+              onChange={handleChange('phone')}
+              onKeyDown={e => {
                 if (e.key === 'Enter') {
-                  handleRegister();
+                  handleRegister()
                 }
-              }} label='Phone' sx={{ marginBottom: 4 }} />
-            <TextField autoFocus fullWidth id='password' type='password' value={values.password} onChange={handleChange('password')}
-              onKeyDown={(e) => {
+              }}
+              label='Phone'
+              sx={{ marginBottom: 4 }}
+            />
+            <TextField
+              autoFocus
+              fullWidth
+              id='password'
+              type='password'
+              value={values.password}
+              onChange={handleChange('password')}
+              onKeyDown={e => {
                 if (e.key === 'Enter') {
-                  handleRegister();
+                  handleRegister()
                 }
-              }} label='Password' sx={{ marginBottom: 4 }} />
-            <TextField autoFocus fullWidth id='confirmPassword' type='password' value={values.confirmPassword} onChange={handleChange('confirmPassword')}
-              onKeyDown={(e) => {
+              }}
+              label='Password'
+              sx={{ marginBottom: 4 }}
+            />
+            <TextField
+              autoFocus
+              fullWidth
+              id='confirmPassword'
+              type='password'
+              value={values.confirmPassword}
+              onChange={handleChange('confirmPassword')}
+              onKeyDown={e => {
                 if (e.key === 'Enter') {
-                  handleRegister();
+                  handleRegister()
                 }
-              }} label='Confirm Password' sx={{ marginBottom: 4 }} />
+              }}
+              label='Confirm Password'
+              sx={{ marginBottom: 4 }}
+            />
             <FormControl fullWidth sx={{ marginBottom: 4 }}>
               <InputLabel id='form-layouts-separator-select-label'>User Type</InputLabel>
               <Select
                 label='User Type'
                 value={values.role}
                 id='form-layouts-separator-select'
-                onChange={(e) => setValues(prevValues => { return { ...prevValues, role: e.target.value } })}
+                onChange={e =>
+                  setValues(prevValues => {
+                    return { ...prevValues, role: e.target.value }
+                  })
+                }
                 labelId='form-layouts-separator-select-label'
               >
                 <MenuItem value='rider'>Rider</MenuItem>
                 <MenuItem value='family'>Family</MenuItem>
               </Select>
             </FormControl>
-            {
-              values.role === 'family' ? <TextField autoFocus fullWidth id='riderID' type='text' value={values.riderID} onChange={handleChange('riderID')}
-                onKeyDown={(e) => {
+            {values.role === 'family' ? (
+              <TextField
+                autoFocus
+                fullWidth
+                id='riderID'
+                type='text'
+                value={values.riderID}
+                onChange={handleChange('riderID')}
+                onKeyDown={e => {
                   if (e.key === 'Enter') {
-                    handleRegister();
+                    handleRegister()
                   }
-                }} label='Rider ID' sx={{ marginBottom: 4 }} /> : <>
-                <TextField autoFocus fullWidth id='plateNumber' type='text' value={values.plateNumber} onChange={handleChange('plateNumber')}
-                  onKeyDown={(e) => {
+                }}
+                label='Rider ID'
+                sx={{ marginBottom: 4 }}
+              />
+            ) : (
+              <>
+                <TextField
+                  autoFocus
+                  fullWidth
+                  id='plateNumber'
+                  type='text'
+                  value={values.plateNumber}
+                  onChange={handleChange('plateNumber')}
+                  onKeyDown={e => {
                     if (e.key === 'Enter') {
-                      handleRegister();
+                      handleRegister()
                     }
-                  }} label='Plate Number' sx={{ marginBottom: 4 }} />
-                <TextField autoFocus fullWidth id='motorcycleType' type='text' value={values.motorcycleType} onChange={handleChange('motorcycleType')}
-                  onKeyDown={(e) => {
+                  }}
+                  label='Plate Number'
+                  sx={{ marginBottom: 4 }}
+                />
+                <TextField
+                  autoFocus
+                  fullWidth
+                  id='motorcycleType'
+                  type='text'
+                  value={values.motorcycleType}
+                  onChange={handleChange('motorcycleType')}
+                  onKeyDown={e => {
                     if (e.key === 'Enter') {
-                      handleRegister();
+                      handleRegister()
                     }
-                  }} label='Motorcycle Type' sx={{ marginBottom: 4 }} /></>
-            }
+                  }}
+                  label='Motorcycle Type'
+                  sx={{ marginBottom: 4 }}
+                />
+              </>
+            )}
 
-            <Box sx={{ mb: 5, }} />
-            <Button
-              fullWidth
-              size='large'
-              variant='contained'
-              sx={{ marginBottom: 7 }}
-              onClick={handleRegister}
-            >
+            <Box sx={{ mb: 5 }} />
+            <Button fullWidth size='large' variant='contained' sx={{ marginBottom: 7 }} onClick={handleRegister}>
               Register
             </Button>
           </form>
@@ -251,7 +318,7 @@ const LoginPage = () => {
           >
             Login instead
           </Button>
-          {values.error ? <Alert severity="error">{values.error}</Alert> : ''}
+          {values.error ? <Alert severity='error'>{values.error}</Alert> : ''}
         </CardContent>
       </Card>
       <FooterIllustrationsV1 />
