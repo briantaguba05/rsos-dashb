@@ -28,13 +28,14 @@ function Dashboard() {
     await getDocs(q).then(snapshot => {
       snapshot.forEach(async value => {
         if (value.data().role == 'family') {
-          await getDocs(doc(firestore, 'users', value.data().riderID)).then(data => {
+          await getDoc(doc(firestore, 'users', value.data().riderID)).then(data => {
             if (data.exists()) {
               setValues(prevValues => {
                 return {
                   ...prevValues,
                   locationPositions: [
                     {
+                      name: data.data().full_name,
                       lat: data.data().location.latitude,
                       lng: data.data().location.longitude
                     }
