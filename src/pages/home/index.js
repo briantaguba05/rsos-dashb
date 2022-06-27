@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
 import themeConfig from 'src/configs/themeConfig'
 import { firebaseAuth, firestore } from 'src/configs/firebase'
-import { collection, getDocs, query, where, getDoc, doc, collectionGroup } from 'firebase/firestore'
+import { collection, getDocs, query, where, doc, getDoc, collectionGroup } from 'firebase/firestore'
 
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
