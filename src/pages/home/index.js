@@ -36,8 +36,8 @@ function Dashboard() {
                   locationPositions: [
                     {
                       name: data.data().full_name,
-                      lat: data.data().loc.latitude,
-                      lng: data.data().loc.longitude
+                      lat: data.data().location.latitude,
+                      lng: data.data().location.longitude
                     }
                   ]
                 }
