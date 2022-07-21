@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "next dev -p 3010",
-    "build": "react-scripts build",
+    "build": "next build",
     "start": "next start -p 3011",
     "export": "next export",
     "lint": "eslint --fix \"src/**/*.{js,jsx}\"",
