@@ -78,6 +78,12 @@ const LoginPage = () => {
     setValues({ ...values, [prop]: event.target.value })
   }
 
+  const [agree, setAgree] = useState(false)
+
+  const checkboxHandler = () => {
+    setAgree(!agree)
+  }
+
   async function handleRegister() {
     router.push('/register')
   }
@@ -146,7 +152,24 @@ const LoginPage = () => {
               sx={{ marginBottom: 4 }}
             />
             <Box sx={{ mb: 5 }} />
-            <Button fullWidth size='large' variant='contained' sx={{ marginBottom: 7 }} onClick={handleLogin}>
+            <div>
+              <input type='checkbox' id='agree' onChange={checkboxHandler} />
+              <label htmlFor='agree'>
+                I agree to{' '}
+                <b>
+                  <Link href='/extra/termsconditions'>terms and conditions</Link> and{' '}
+                  <Link href='/extra/privacypolicy'>privacy policy</Link>
+                </b>
+              </label>
+            </div>
+            <Button
+              disabled={!agree}
+              fullWidth
+              size='large'
+              variant='contained'
+              sx={{ marginBottom: 7 }}
+              onClick={handleLogin}
+            >
               Login
             </Button>
           </form>

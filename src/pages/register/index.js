@@ -83,6 +83,12 @@ const LoginPage = () => {
   // ** Hook
   const theme = useTheme()
 
+  const [agree, setAgree] = useState(false)
+
+  const checkboxHandler = () => {
+    setAgree(!agree)
+  }
+
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value })
   }
@@ -303,8 +309,26 @@ const LoginPage = () => {
               </>
             )}
 
+            <div>
+              <input type='checkbox' id='agree' onChange={checkboxHandler} />
+              <label htmlFor='agree'>
+                I agree to{' '}
+                <b>
+                  <Link href='/termsconditions'>terms and conditions</Link> and{' '}
+                  <Link href='/privacypolicy'>privacy policy</Link>
+                </b>
+              </label>
+            </div>
+
             <Box sx={{ mb: 5 }} />
-            <Button fullWidth size='large' variant='contained' sx={{ marginBottom: 7 }} onClick={handleRegister}>
+            <Button
+              disabled={!agree}
+              fullWidth
+              size='large'
+              variant='contained'
+              sx={{ marginBottom: 7 }}
+              onClick={handleRegister}
+            >
               Register
             </Button>
           </form>

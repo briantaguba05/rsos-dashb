@@ -1,13 +1,12 @@
 // ** React Imports
 import { useState, useEffect, Fragment } from 'react'
 
-import { firebaseAuth, firestore } from 'src/configs/firebase';
+import { firebaseAuth, firestore } from 'src/configs/firebase'
 
 // ** Next Import
 import { useRouter } from 'next/router'
 
-import { collection, getDocs, query, where } from "firebase/firestore";
-
+import { collection, getDocs, query, where } from 'firebase/firestore'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
@@ -53,7 +52,7 @@ const UserDropdown = () => {
 
   function handleLogout() {
     firebaseAuth.signOut()
-    router.push('/')
+    router.push('/login')
     setAnchorEl(null)
   }
 
@@ -64,18 +63,19 @@ const UserDropdown = () => {
 
   useEffect(() => {
     getUserdata()
-  }, []);
+  }, [])
 
   async function getUserdata() {
-    const q = query(collection(firestore, "users"), where("auth_uid", "==", firebaseAuth.currentUser.uid))
+    const q = query(collection(firestore, 'users'), where('auth_uid', '==', firebaseAuth.currentUser.uid))
 
-    await getDocs(q).then((snapshot) => {
-      snapshot.forEach((doc) => {
-        setValues(prevValues => { return { ...prevValues, account: doc.data() } })
+    await getDocs(q).then(snapshot => {
+      snapshot.forEach(doc => {
+        setValues(prevValues => {
+          return { ...prevValues, account: doc.data() }
+        })
       })
     })
   }
-
 
   const styles = {
     py: 2,
@@ -122,10 +122,16 @@ const UserDropdown = () => {
               badgeContent={<BadgeContentSpan />}
               anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             >
-              <Avatar alt={values.account != null ? `${values.account.full_name}` : 'profile'} src={'/images/avatars/1.png'} sx={{ width: '2.5rem', height: '2.5rem' }} />
+              <Avatar
+                alt={values.account != null ? `${values.account.full_name}` : 'profile'}
+                src={'/images/avatars/1.png'}
+                sx={{ width: '2.5rem', height: '2.5rem' }}
+              />
             </Badge>
             <Box sx={{ display: 'flex', marginLeft: 3, alignItems: 'flex-start', flexDirection: 'column' }}>
-              <Typography sx={{ fontWeight: 600 }}>{values.account != null ? `${values.account.full_name}` : 'profile'}</Typography>
+              <Typography sx={{ fontWeight: 600 }}>
+                {values.account != null ? `${values.account.full_name}` : 'profile'}
+              </Typography>
               <Typography variant='body2' sx={{ fontSize: '0.8rem', color: 'text.disabled' }}>
                 {values.account != null ? `${values.account.role}` : ''}
               </Typography>

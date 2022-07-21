@@ -1,8 +1,8 @@
 // ** React Imports
 import { useState, useEffect } from 'react'
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
-const axios = require('axios').default;
+const axios = require('axios').default
 
 // ** Next Imports
 import Link from 'next/link'
@@ -35,7 +35,7 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 // ** Demo Imports
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
 
-import { firebaseAuth } from 'src/configs/firebase';
+import { firebaseAuth } from 'src/configs/firebase'
 
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -69,14 +69,19 @@ const LoginPage = () => {
     if (firebaseAuth.currentUser) {
       router.push('/home')
     }
-  });
+  })
 
   // ** Hook
   const theme = useTheme()
 
-
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value })
+  }
+
+  const [agree, setAgree] = useState(false)
+
+  const checkboxHandler = () => {
+    setAgree(!agree)
   }
 
   async function handleRegister() {
@@ -84,7 +89,6 @@ const LoginPage = () => {
   }
 
   async function handleLogin() {
-
     try {
       const response = await signInWithEmailAndPassword(firebaseAuth, values.email, values.password)
 
@@ -104,37 +108,67 @@ const LoginPage = () => {
     <Box className='content-center'>
       <Head>
         <title>{`${themeConfig.templateName} - Login`}</title>
-        <meta
-          name='description'
-          content={`${themeConfig.templateName} - Login`}
-        />
+        <meta name='description' content={`${themeConfig.templateName} - Login`} />
         <meta name='keywords' content='RSOS' />
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
 
       <Card sx={{ zIndex: 1 }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
-
           <Box sx={{ mb: 6 }}>
             <Typography variant='h5' sx={{ fontWeight: 600, marginBottom: 1.5 }}>
               Welcome to {themeConfig.templateName}
             </Typography>
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField autoFocus fullWidth id='email' type='email' value={values.email} onChange={handleChange('email')}
-              onKeyDown={(e) => {
+            <TextField
+              autoFocus
+              fullWidth
+              id='email'
+              type='email'
+              value={values.email}
+              onChange={handleChange('email')}
+              onKeyDown={e => {
                 if (e.key === 'Enter') {
-                  handleLogin();
+                  handleLogin()
                 }
-              }} label='Email' sx={{ marginBottom: 4 }} />
-            <TextField autoFocus fullWidth id='password' type='password' value={values.password} onChange={handleChange('password')}
-              onKeyDown={(e) => {
+              }}
+              label='Email'
+              sx={{ marginBottom: 4 }}
+            />
+            <TextField
+              autoFocus
+              fullWidth
+              id='password'
+              type='password'
+              value={values.password}
+              onChange={handleChange('password')}
+              onKeyDown={e => {
                 if (e.key === 'Enter') {
-                  handleLogin();
+                  handleLogin()
                 }
-              }} label='Password' sx={{ marginBottom: 4 }} />
-            <Box sx={{ mb: 5, }} />
+              }}
+              label='Password'
+              sx={{ marginBottom: 4 }}
+            />
+            <Box sx={{ mb: 5 }} />
+            <div>
+              <input type='checkbox' id='agree' onChange={checkboxHandler} />
+              <label htmlFor='agree'>
+                I agree to{' '}
+                <b>
+                  <Link href='/extra/termsconditions' target='_blank'>
+                    terms and conditions
+                  </Link>{' '}
+                  and{' '}
+                  <Link href='/extra/privacypolicy' target='_blank'>
+                    privacy policy
+                  </Link>
+                </b>
+              </label>
+            </div>
             <Button
+              disabled={!agree}
               fullWidth
               size='large'
               variant='contained'
@@ -154,7 +188,7 @@ const LoginPage = () => {
           >
             Register
           </Button>
-          {values.error ? <Alert severity="error">{values.error}</Alert> : ''}
+          {values.error ? <Alert severity='error'>{values.error}</Alert> : ''}
         </CardContent>
       </Card>
       <FooterIllustrationsV1 />
