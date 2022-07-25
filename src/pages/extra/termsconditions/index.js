@@ -396,6 +396,6 @@ const TermsConditions = () => {
     </>
   )
 }
-LoginPage.getLayout = page => <BlankLayout>{page}</BlankLayout>
+TermsConditions.getLayout = page => <BlankLayout>{page}</BlankLayout>
 
 export default TermsConditions

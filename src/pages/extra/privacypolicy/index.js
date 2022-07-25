@@ -332,6 +332,6 @@ const PrivacyPolicy = () => {
     </>
   )
 }
-LoginPage.getLayout = page => <BlankLayout>{page}</BlankLayout>
+PrivacyPolicy.getLayout = page => <BlankLayout>{page}</BlankLayout>
 
 export default PrivacyPolicy
