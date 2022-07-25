@@ -28,12 +28,12 @@ const Card = styled(MuiCard)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: { width: '40rem' }
 }))
 
-const TermsConditions = () => {
+function TermsConditions() {
   return (
     <>
       <Box className='content-center'>
         <Head>
-          <title>{`${themeConfig.templateName} - Login`}</title>
+          <title>{`${themeConfig.templateName} - Terms and Conditions`}</title>
           <meta name='description' content={`${themeConfig.templateName} - Login`} />
           <meta name='keywords' content='RSOS' />
           <meta name='viewport' content='initial-scale=1, width=device-width' />
