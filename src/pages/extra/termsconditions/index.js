@@ -1,26 +1,19 @@
 // ** React Imports
-import { React, useState, useEffect } from 'react'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import React from 'react'
 
 const axios = require('axios').default
 
 // ** Next Imports
 import Link from 'next/link'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 
 // ** MUI Components
 import Box from '@mui/material/Box'
 
 import Alert from '@mui/material/Alert'
 
-import CardContent from '@mui/material/CardContent'
-import FormControl from '@mui/material/FormControl'
-import OutlinedInput from '@mui/material/OutlinedInput'
 import { styled, useTheme } from '@mui/material/styles'
 import MuiCard from '@mui/material/Card'
-import InputAdornment from '@mui/material/InputAdornment'
-import MuiFormControlLabel from '@mui/material/FormControlLabel'
 
 import { AboutH1, Filler, AboutP, TermsH2, TermsSiteP } from './TermsConditionElements'
 
@@ -30,77 +23,12 @@ import themeConfig from 'src/configs/themeConfig'
 // ** Layout Import
 import BlankLayout from 'src/@core/layouts/BlankLayout'
 
-// ** Demo Imports
-
-import { firebaseAuth } from 'src/configs/firebase'
-
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: { width: '40rem' }
 }))
 
-const LinkStyled = styled('a')(({ theme }) => ({
-  fontSize: '0.875rem',
-  textDecoration: 'none',
-  color: theme.palette.primary.main
-}))
-
-const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
-  '& .MuiFormControlLabel-label': {
-    fontSize: '0.875rem',
-    color: theme.palette.text.secondary
-  }
-}))
-
 const TermsConditions = () => {
-  // ** State
-  const [values, setValues] = useState({
-    email: '',
-    password: '',
-    error: null
-  })
-
-  const router = useRouter()
-
-  useEffect(() => {
-    if (firebaseAuth.currentUser) {
-      router.push('/home')
-    }
-  })
-
-  // ** Hook
-  const theme = useTheme()
-
-  const handleChange = prop => event => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
-
-  const [agree, setAgree] = useState(false)
-
-  const checkboxHandler = () => {
-    setAgree(!agree)
-  }
-
-  async function handleRegister() {
-    router.push('/register')
-  }
-
-  async function handleLogin() {
-    try {
-      const response = await signInWithEmailAndPassword(firebaseAuth, values.email, values.password)
-
-      if (response.user) {
-        router.push('/home')
-      }
-    } catch (error) {
-      setValues({ ...values, error: error.message })
-
-      setTimeout(() => {
-        setValues({ ...values, error: null })
-      }, 5000)
-    }
-  }
-
   return (
     <>
       <Box className='content-center'>
@@ -389,8 +317,6 @@ const TermsConditions = () => {
             not be liable for any loss or damage of any nature.
           </AboutP>
           <br></br>
-
-          {values.error ? <Alert severity='error'>{values.error}</Alert> : ''}
         </Card>
       </Box>
     </>
