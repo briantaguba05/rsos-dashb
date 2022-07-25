@@ -52,7 +52,7 @@ const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
   }
 }))
 
-const LoginPage = () => {
+const PrivacyPolicy = () => {
   // ** State
   const [values, setValues] = useState({
     email: '',

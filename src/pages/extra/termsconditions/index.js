@@ -52,7 +52,7 @@ const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
   }
 }))
 
-const LoginPage = () => {
+const TermsConditions = () => {
   // ** State
   const [values, setValues] = useState({
     email: '',
