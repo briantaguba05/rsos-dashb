@@ -334,4 +334,4 @@ const LoginPage = () => {
 }
 LoginPage.getLayout = page => <BlankLayout>{page}</BlankLayout>
 
-export default LoginPage
+export default PrivacyPolicy
